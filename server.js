@@ -6,7 +6,7 @@ import connectDB from "./config/database.js";
 import router from "./routes/api.js";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 connectDB();
 app.use(cors()); //enabling cors for all origins
