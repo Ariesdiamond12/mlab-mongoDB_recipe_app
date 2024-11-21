@@ -1,8 +1,10 @@
 //It will be responsible for the functions of the incoming request and orchestrating the applications response
 import Recipe from "../models/recipe.js";
 
-const createRecipe = async (req, res) => {
-    try {
+// I've created an async function that will create a new recipe
+const createRecipe = async (req, res) => {  //the req param will be a request object that contains info that will be used to create a new recipe
+  //the res param will be a response object that will be used to send a response back to the client
+    try {   // I have a try catch block to catch any errors that may occur during the execution of the code
       const newRecipe = await Recipe.create(req.body);
       res.status(201).json(newRecipe);
     } catch (error) {
@@ -23,7 +25,7 @@ const getRecipe = async (req, res) => {
        console.log(error)
        res.status(500).json({error: "An error occured while fecthing recipe"}) 
     }
-}
+} 
 
 const getRecipeById = async (req, res) => {
     try {

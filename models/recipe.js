@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// I've created a schema which is a JSON object that defines the structure of the data in the collection.
+// Meaning that if we are creating the recipe, it should have a name, ingredients, and instructions etc
 const recipeSchema = new mongoose.Schema({
     name:{type: String, required: true},
     ingredients:{type:String, required: true},
