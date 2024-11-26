@@ -21,7 +21,7 @@ const getRecipe = async (req, res) => {
         res.status(200).json({Recipe, totalRecipes, page, limit});
     } catch (error) {
        console.log(error)
-       res.status(500).json({error: "An error occured while fecthing recipe"}) 
+       res.status(500).json({error: "An error occurred while fetching recipe"}) 
     }
 }
 

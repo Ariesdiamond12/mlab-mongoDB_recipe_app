@@ -1,6 +1,6 @@
-//Will be having a function for registration and a function for loging in
-import User from "./models/User.js";
-import bcrypt from "bcryptjs";
+//Will be having a function for registration and a function for logging in
+import User from "../models/user.js";
+import bcrypt from 'bcryptjs'
 import generateToken from "../utils/index.js";
 
 const registerUser = async (req, res) => {
@@ -29,15 +29,17 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
 
-    if (use || !(await user.matchedPasswords(password))) {
+    if (!user || !(await user.matchPasswords(password))) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    const token = generateToken(user._id);
+    const token = await generateToken(user._id);
     res.status(200).json({ _id: user._id, email: user.email, token: token });
   } catch (error) {
+    console.log(error);
+    
     res.status(500).json({ error: "Error occurred" });
   }
 };

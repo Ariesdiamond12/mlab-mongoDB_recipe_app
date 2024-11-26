@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import * as bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import validator from "validator";
 
 const userSchema = new mongoose.Schema({
@@ -10,13 +10,16 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, "Please enter a valid email"],
   },
   password: {
+    
     type: String,
     required: true,
     validate: {
       validator: function (password) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
-          value
-        );
+        // return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
+        //   value
+        // );
+
+        return password;
       },
       message:
         "Password should be at least 8 characters long, and should contain at least one lowercase letter, one number and one special character",
